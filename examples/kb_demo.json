@@ -1,0 +1,345 @@
+{
+  "next_id": 8,
+  "nodes": [
+    {
+      "id": 0,
+      "conditions": [],
+      "conclusion": "Latihan full-body 3x seminggu (45 menit, intensitas sedang: kombinasi kardio ringan + latihan beban dasar)",
+      "cornerstone": null,
+      "true_child": 1,
+      "false_child": null,
+      "parent": null,
+      "created_at": "2026-10-30T18:29:27"
+    },
+    {
+      "id": 1,
+      "conditions": [
+        {
+          "attr": "bmi",
+          "op": ">=",
+          "value": 30.0
+        }
+      ],
+      "conclusion": "Kardio low-impact (jalan cepat / sepeda statis) 5x seminggu 30–45 menit + latihan beban ringan 2x",
+      "cornerstone": {
+        "usia": 35,
+        "bmi": 32.5,
+        "tujuan": "turun_berat",
+        "level": "pemula",
+        "hari_luang": 3,
+        "durasi_sesi": 45,
+        "cedera": "tidak_ada",
+        "fasilitas": "outdoor"
+      },
+      "true_child": 2,
+      "false_child": 3,
+      "parent": 0,
+      "created_at": "2026-10-30T18:29:27"
+    },
+    {
+      "id": 2,
+      "conditions": [
+        {
+          "attr": "cedera",
+          "op": "==",
+          "value": "lutut"
+        }
+      ],
+      "conclusion": "Renang / aqua jogging 4x seminggu + penguatan otot paha tanpa beban (isometrik)",
+      "cornerstone": {
+        "usia": 40,
+        "bmi": 33.0,
+        "tujuan": "turun_berat",
+        "level": "pemula",
+        "hari_luang": 3,
+        "durasi_sesi": 45,
+        "cedera": "lutut",
+        "fasilitas": "kolam_renang"
+      },
+      "true_child": null,
+      "false_child": null,
+      "parent": 1,
+      "created_at": "2026-10-30T18:29:27"
+    },
+    {
+      "id": 3,
+      "conditions": [
+        {
+          "attr": "usia",
+          "op": ">=",
+          "value": 60
+        }
+      ],
+      "conclusion": "Jalan kaki 30 menit 5x seminggu + latihan keseimbangan & stretching (tai chi / yoga ringan)",
+      "cornerstone": {
+        "usia": 65,
+        "bmi": 24.0,
+        "tujuan": "kebugaran_umum",
+        "level": "pemula",
+        "hari_luang": 3,
+        "durasi_sesi": 45,
+        "cedera": "tidak_ada",
+        "fasilitas": "gym"
+      },
+      "true_child": null,
+      "false_child": 4,
+      "parent": 1,
+      "created_at": "2026-10-30T18:29:27"
+    },
+    {
+      "id": 4,
+      "conditions": [
+        {
+          "attr": "tujuan",
+          "op": "==",
+          "value": "bentuk_otot"
+        }
+      ],
+      "conclusion": "Split upper/lower 4x seminggu, progressive overload 8–12 repetisi",
+      "cornerstone": {
+        "usia": 22,
+        "bmi": 23.0,
+        "tujuan": "bentuk_otot",
+        "level": "menengah",
+        "hari_luang": 4,
+        "durasi_sesi": 60,
+        "cedera": "tidak_ada",
+        "fasilitas": "gym"
+      },
+      "true_child": 5,
+      "false_child": 6,
+      "parent": 3,
+      "created_at": "2026-10-30T18:29:27"
+    },
+    {
+      "id": 5,
+      "conditions": [
+        {
+          "attr": "fasilitas",
+          "op": "==",
+          "value": "rumah"
+        }
+      ],
+      "conclusion": "Full-body bodyweight 3x seminggu (push-up, squat, plank) + resistance band",
+      "cornerstone": {
+        "usia": 20,
+        "bmi": 21.0,
+        "tujuan": "bentuk_otot",
+        "level": "pemula",
+        "hari_luang": 3,
+        "durasi_sesi": 45,
+        "cedera": "tidak_ada",
+        "fasilitas": "rumah"
+      },
+      "true_child": null,
+      "false_child": null,
+      "parent": 4,
+      "created_at": "2026-10-30T18:29:27"
+    },
+    {
+      "id": 6,
+      "conditions": [
+        {
+          "attr": "tujuan",
+          "op": "==",
+          "value": "stamina"
+        }
+      ],
+      "conclusion": "Lari interval 2x + lari santai 2x + long run 1x seminggu (program 5K→10K)",
+      "cornerstone": {
+        "usia": 28,
+        "bmi": 22.5,
+        "tujuan": "stamina",
+        "level": "menengah",
+        "hari_luang": 5,
+        "durasi_sesi": 45,
+        "cedera": "tidak_ada",
+        "fasilitas": "outdoor"
+      },
+      "true_child": 7,
+      "false_child": null,
+      "parent": 4,
+      "created_at": "2026-10-30T18:29:27"
+    },
+    {
+      "id": 7,
+      "conditions": [
+        {
+          "attr": "cedera",
+          "op": "==",
+          "value": "lutut"
+        }
+      ],
+      "conclusion": "Renang interval 3x seminggu + sepeda statis 1x (tanpa benturan pada lutut)",
+      "cornerstone": {
+        "usia": 30,
+        "bmi": 23.0,
+        "tujuan": "stamina",
+        "level": "menengah",
+        "hari_luang": 4,
+        "durasi_sesi": 45,
+        "cedera": "lutut",
+        "fasilitas": "kolam_renang"
+      },
+      "true_child": null,
+      "false_child": null,
+      "parent": 6,
+      "created_at": "2026-10-30T18:29:27"
+    }
+  ],
+  "history": [
+    {
+      "time": "2026-10-30T18:29:27",
+      "case": {
+        "usia": 35,
+        "bmi": 32.5,
+        "tujuan": "turun_berat",
+        "level": "pemula",
+        "hari_luang": 3,
+        "durasi_sesi": 45,
+        "cedera": "tidak_ada",
+        "fasilitas": "outdoor"
+      },
+      "system_conclusion": "Latihan full-body 3x seminggu (45 menit, intensitas sedang: kombinasi kardio ringan + latihan beban dasar)",
+      "final_conclusion": "Kardio low-impact (jalan cepat / sepeda statis) 5x seminggu 30–45 menit + latihan beban ringan 2x",
+      "accepted": false,
+      "new_rule_id": 1
+    },
+    {
+      "time": "2026-10-30T18:29:27",
+      "case": {
+        "usia": 40,
+        "bmi": 33.0,
+        "tujuan": "turun_berat",
+        "level": "pemula",
+        "hari_luang": 3,
+        "durasi_sesi": 45,
+        "cedera": "lutut",
+        "fasilitas": "kolam_renang"
+      },
+      "system_conclusion": "Kardio low-impact (jalan cepat / sepeda statis) 5x seminggu 30–45 menit + latihan beban ringan 2x",
+      "final_conclusion": "Renang / aqua jogging 4x seminggu + penguatan otot paha tanpa beban (isometrik)",
+      "accepted": false,
+      "new_rule_id": 2
+    },
+    {
+      "time": "2026-10-30T18:29:27",
+      "case": {
+        "usia": 65,
+        "bmi": 24.0,
+        "tujuan": "kebugaran_umum",
+        "level": "pemula",
+        "hari_luang": 3,
+        "durasi_sesi": 45,
+        "cedera": "tidak_ada",
+        "fasilitas": "gym"
+      },
+      "system_conclusion": "Latihan full-body 3x seminggu (45 menit, intensitas sedang: kombinasi kardio ringan + latihan beban dasar)",
+      "final_conclusion": "Jalan kaki 30 menit 5x seminggu + latihan keseimbangan & stretching (tai chi / yoga ringan)",
+      "accepted": false,
+      "new_rule_id": 3
+    },
+    {
+      "time": "2026-10-30T18:29:27",
+      "case": {
+        "usia": 22,
+        "bmi": 23.0,
+        "tujuan": "bentuk_otot",
+        "level": "menengah",
+        "hari_luang": 4,
+        "durasi_sesi": 60,
+        "cedera": "tidak_ada",
+        "fasilitas": "gym"
+      },
+      "system_conclusion": "Latihan full-body 3x seminggu (45 menit, intensitas sedang: kombinasi kardio ringan + latihan beban dasar)",
+      "final_conclusion": "Split upper/lower 4x seminggu, progressive overload 8–12 repetisi",
+      "accepted": false,
+      "new_rule_id": 4
+    },
+    {
+      "time": "2026-10-30T18:29:27",
+      "case": {
+        "usia": 20,
+        "bmi": 21.0,
+        "tujuan": "bentuk_otot",
+        "level": "pemula",
+        "hari_luang": 3,
+        "durasi_sesi": 45,
+        "cedera": "tidak_ada",
+        "fasilitas": "rumah"
+      },
+      "system_conclusion": "Split upper/lower 4x seminggu, progressive overload 8–12 repetisi",
+      "final_conclusion": "Full-body bodyweight 3x seminggu (push-up, squat, plank) + resistance band",
+      "accepted": false,
+      "new_rule_id": 5
+    },
+    {
+      "time": "2026-10-30T18:29:27",
+      "case": {
+        "usia": 28,
+        "bmi": 22.5,
+        "tujuan": "stamina",
+        "level": "menengah",
+        "hari_luang": 5,
+        "durasi_sesi": 45,
+        "cedera": "tidak_ada",
+        "fasilitas": "outdoor"
+      },
+      "system_conclusion": "Latihan full-body 3x seminggu (45 menit, intensitas sedang: kombinasi kardio ringan + latihan beban dasar)",
+      "final_conclusion": "Lari interval 2x + lari santai 2x + long run 1x seminggu (program 5K→10K)",
+      "accepted": false,
+      "new_rule_id": 6
+    },
+    {
+      "time": "2026-10-30T18:29:27",
+      "case": {
+        "usia": 30,
+        "bmi": 23.0,
+        "tujuan": "stamina",
+        "level": "menengah",
+        "hari_luang": 4,
+        "durasi_sesi": 45,
+        "cedera": "lutut",
+        "fasilitas": "kolam_renang"
+      },
+      "system_conclusion": "Lari interval 2x + lari santai 2x + long run 1x seminggu (program 5K→10K)",
+      "final_conclusion": "Renang interval 3x seminggu + sepeda statis 1x (tanpa benturan pada lutut)",
+      "accepted": false,
+      "new_rule_id": 7
+    },
+    {
+      "time": "2026-10-30T18:29:27",
+      "case": {
+        "usia": 27,
+        "bmi": 22.0,
+        "tujuan": "kebugaran_umum",
+        "level": "pemula",
+        "hari_luang": 3,
+        "durasi_sesi": 45,
+        "cedera": "tidak_ada",
+        "fasilitas": "gym"
+      },
+      "system_conclusion": "Latihan full-body 3x seminggu (45 menit, intensitas sedang: kombinasi kardio ringan + latihan beban dasar)",
+      "final_conclusion": "Latihan full-body 3x seminggu (45 menit, intensitas sedang: kombinasi kardio ringan + latihan beban dasar)",
+      "accepted": true,
+      "new_rule_id": null
+    },
+    {
+      "time": "2026-10-30T18:29:27",
+      "case": {
+        "usia": 70,
+        "bmi": 26.0,
+        "tujuan": "kebugaran_umum",
+        "level": "pemula",
+        "hari_luang": 3,
+        "durasi_sesi": 45,
+        "cedera": "tidak_ada",
+        "fasilitas": "gym"
+      },
+      "system_conclusion": "Jalan kaki 30 menit 5x seminggu + latihan keseimbangan & stretching (tai chi / yoga ringan)",
+      "final_conclusion": "Jalan kaki 30 menit 5x seminggu + latihan keseimbangan & stretching (tai chi / yoga ringan)",
+      "accepted": true,
+      "new_rule_id": null
+    }
+  ]
+}
