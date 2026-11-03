@@ -16,7 +16,7 @@ from rdr.schema import ATTR_BY_NAME, ATTRIBUTES, DEFAULT_CONCLUSION, DOMAIN_NAME
 ROOT = Path(__file__).parent
 KB_PATH = ROOT / "kb.json"
 DEMO_KB_PATH = ROOT / "examples" / "kb_demo.json"
-NEW_CONCLUSION = "➕ Tulis kesimpulan baru…"
+NEW_CONCLUSION = "+ Tulis kesimpulan baru…"
 
 st.set_page_config(page_title=f"RDR – {DOMAIN_NAME}", page_icon="🏋️", layout="wide")
 
@@ -116,7 +116,7 @@ def tree_dot(result=None, pending: tuple[int, str] | None = None) -> str:
 
 # ---------------- sidebar ----------------
 with st.sidebar:
-    st.header("🏋️ " + DOMAIN_NAME)
+    st.header(":material/fitness_center: " + DOMAIN_NAME)
     st.caption(f"Sistem pakar berbasis Ripple Down Rules. Pakar: **{EXPERT_ROLE}**.")
     c1, c2 = st.columns(2)
     c1.metric("Jumlah rule", len(kb.nodes))
@@ -125,7 +125,7 @@ with st.sidebar:
     st.divider()
     st.subheader("Basis pengetahuan")
     st.download_button(
-        "⬇️ Unduh KB (JSON)",
+        ":material/download: Unduh KB (JSON)",
         json.dumps(kb.to_dict(), indent=2, ensure_ascii=False),
         file_name="kb.json",
         mime="application/json",
@@ -142,13 +142,13 @@ with st.sidebar:
         except (RDRError, KeyError, json.JSONDecodeError) as e:
             st.error(f"Gagal memuat KB: {e}")
 
-    if DEMO_KB_PATH.exists() and st.button("📦 Muat KB contoh", use_container_width=True):
+    if DEMO_KB_PATH.exists() and st.button(":material/inventory_2: Muat KB contoh", use_container_width=True):
         st.session_state.kb = KnowledgeBase.load(DEMO_KB_PATH)
         save_kb()
         reset_consultation()
         st.rerun()
 
-    with st.expander("♻️ Reset KB ke Rule 0"):
+    with st.expander(":material/restart_alt: Reset KB ke Rule 0"):
         default = st.text_area("Kesimpulan default (Rule 0)", DEFAULT_CONCLUSION)
         if st.button("Reset sekarang", type="primary", use_container_width=True):
             st.session_state.kb = KnowledgeBase(default.strip() or DEFAULT_CONCLUSION)
@@ -159,7 +159,7 @@ with st.sidebar:
 
 # ---------------- tabs ----------------
 tab_consult, tab_tree, tab_rules, tab_history = st.tabs(
-    ["🧑‍🏫 Konsultasi", "🌳 Pohon RDR", "📜 Daftar Rule", "🗂️ Riwayat Kasus"]
+    [":material/school: Konsultasi", ":material/account_tree: Pohon RDR", ":material/list_alt: Daftar Rule", ":material/history: Riwayat Kasus"]
 )
 
 
@@ -168,10 +168,10 @@ def render_path(result) -> None:
         n = kb.nodes[step.node_id]
         if step.satisfied:
             nxt = "lanjut ke true-child (perkecualian)" if n.true_child is not None else "tidak ada true-child, berhenti"
-            st.markdown(f"✅ **Rule #{n.id}** `IF {n.condition_text()}` terpenuhi → kesimpulan sementara: *{n.conclusion}* · {nxt}")
+            st.markdown(f":green[:material/check_circle:] **Rule #{n.id}** `IF {n.condition_text()}` terpenuhi → kesimpulan sementara: *{n.conclusion}* · {nxt}")
         else:
             nxt = "lanjut ke false-child" if n.false_child is not None else "tidak ada false-child, berhenti"
-            st.markdown(f"❌ **Rule #{n.id}** `IF {n.condition_text()}` tidak terpenuhi · {nxt}")
+            st.markdown(f":red[:material/cancel:] **Rule #{n.id}** `IF {n.condition_text()}` tidak terpenuhi · {nxt}")
 
 
 def render_acquisition(case: dict, result) -> None:
@@ -180,7 +180,7 @@ def render_acquisition(case: dict, result) -> None:
     cornerstone = fired.cornerstone
     side_txt = "true-child (perkecualian)" if result.attach_side == "true" else "false-child"
 
-    st.subheader("✍️ Akuisisi pengetahuan")
+    st.subheader(":material/edit_note: Akuisisi pengetahuan")
     st.markdown(
         f"Kesimpulan berasal dari **Rule #{fired.id}**. Rule baru akan menjadi perkecualian baginya, "
         f"dipasang sebagai **{side_txt}** dari **Rule #{result.attach_parent_id}**."
@@ -201,7 +201,7 @@ def render_acquisition(case: dict, result) -> None:
                 "Atribut": attr_label(a["name"]),
                 "Kasus baru": pretty(case.get(a["name"])),
                 f"Kasus kunci Rule #{fired.id}": pretty(cornerstone.get(a["name"])),
-                "Berbeda": "⚠️" if case.get(a["name"]) != cornerstone.get(a["name"]) else "",
+                "Berbeda": "≠" if case.get(a["name"]) != cornerstone.get(a["name"]) else "",
             }
             for a in ATTRIBUTES
         ]
@@ -245,7 +245,7 @@ def render_acquisition(case: dict, result) -> None:
         st.code(f"IF {preview} THEN {conclusion or '…'}", language=None)
 
     b1, b2 = st.columns(2)
-    if b1.button("💾 Simpan rule baru", type="primary", use_container_width=True, key=f"save_{acq}"):
+    if b1.button(":material/save: Simpan rule baru", type="primary", use_container_width=True, key=f"save_{acq}"):
         try:
             node = kb.add_rule(case, conclusion or "", chosen)
         except RDRError as e:
@@ -281,7 +281,7 @@ with tab_consult:
                     new_case[a["name"]] = st.selectbox(
                         a["label"], a["options"], format_func=lambda v: v.replace("_", " ")
                     )
-            if st.form_submit_button("🔎 Cari rekomendasi", type="primary", use_container_width=True):
+            if st.form_submit_button(":material/search: Cari rekomendasi", type="primary", use_container_width=True):
                 if isinstance(new_case["bmi"], float):
                     new_case["bmi"] = round(new_case["bmi"], 1)
                 reset_consultation()
@@ -298,7 +298,7 @@ with tab_consult:
         phase = st.session_state.phase
         case, result = st.session_state.case, st.session_state.result
         if flash := st.session_state.pop("flash", None):
-            st.toast(flash, icon="✅")
+            st.toast(flash, icon=":material/check_circle:")
 
         if phase is None:
             st.info("Isi data konsumen lalu tekan **Cari rekomendasi**.")
@@ -327,7 +327,7 @@ with tab_consult:
                 st.markdown("**Posisi rule baru pada pohon:**")
                 st.graphviz_chart(tree_dot(result, (result.attach_parent_id, result.attach_side)))
             elif phase == "done":
-                if st.button("🔄 Konsultasi baru"):
+                if st.button(":material/refresh: Konsultasi baru"):
                     reset_consultation()
                     st.rerun()
 
@@ -360,7 +360,7 @@ with tab_history:
                 **{ATTR_BY_NAME[k]["label"] if k in ATTR_BY_NAME else k: pretty(v) for k, v in h["case"].items()},
                 "Kesimpulan sistem": h["system_conclusion"],
                 "Kesimpulan final": h["final_conclusion"],
-                "Pakar setuju": "✅" if h["accepted"] else "❌",
+                "Pakar setuju": "Ya" if h["accepted"] else "Tidak",
                 "Rule baru": f"#{h['new_rule_id']}" if h["new_rule_id"] is not None else "",
             })
         st.dataframe(pd.DataFrame(rows), hide_index=True, use_container_width=True)
